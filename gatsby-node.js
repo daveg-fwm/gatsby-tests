@@ -1,7 +1,23 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
+exports.createSchemaCustomization = ({ actions, schema }) => {
+  const { createTypes } = actions
+  const typeDefs = [
+    schema.buildObjectType({
+      name: "ContentfulComponentProduct",
+      fields: {
+        name: "String!",
+        // cardSummary: {
+        //   raw: "JSON!"
+        // },
+        // description: {
+        //   raw: "String!"
+        // },
+        price: "String!",
+        purchaseUrl: {
+          type: "String!",
+          resolve: source => process.env.PURCHASE_URL.replace("{code}", source.code),
+        },
+      },
+    }),
+  ]
+  createTypes(typeDefs)
+}
