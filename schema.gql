@@ -1,0 +1,765 @@
+### Type definitions saved at 2020-12-05T12:45:20.954Z ###
+
+type File implements Node @dontInfer {
+  sourceInstanceName: String!
+  absolutePath: String!
+  relativePath: String!
+  extension: String!
+  size: Int!
+  prettySize: String!
+  modifiedTime: Date! @dateformat
+  accessTime: Date! @dateformat
+  changeTime: Date! @dateformat
+  birthTime: Date! @dateformat
+  root: String!
+  dir: String!
+  base: String!
+  ext: String!
+  name: String!
+  relativeDirectory: String!
+  dev: Int!
+  mode: Int!
+  nlink: Int!
+  uid: Int!
+  gid: Int!
+  rdev: Int!
+  ino: Float!
+  atimeMs: Float!
+  mtimeMs: Float!
+  ctimeMs: Float!
+  atime: Date! @dateformat
+  mtime: Date! @dateformat
+  ctime: Date! @dateformat
+  birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+  birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+  blksize: Int
+  blocks: Int
+}
+
+type Directory implements Node @dontInfer {
+  sourceInstanceName: String!
+  absolutePath: String!
+  relativePath: String!
+  extension: String!
+  size: Int!
+  prettySize: String!
+  modifiedTime: Date! @dateformat
+  accessTime: Date! @dateformat
+  changeTime: Date! @dateformat
+  birthTime: Date! @dateformat
+  root: String!
+  dir: String!
+  base: String!
+  ext: String!
+  name: String!
+  relativeDirectory: String!
+  dev: Int!
+  mode: Int!
+  nlink: Int!
+  uid: Int!
+  gid: Int!
+  rdev: Int!
+  ino: Float!
+  atimeMs: Float!
+  mtimeMs: Float!
+  ctimeMs: Float!
+  atime: Date! @dateformat
+  mtime: Date! @dateformat
+  ctime: Date! @dateformat
+  birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+  birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+  blksize: Int
+  blocks: Int
+}
+
+type Site implements Node @dontInfer {
+  buildTime: Date @dateformat
+  siteMetadata: SiteSiteMetadata
+  port: Int
+  host: String
+  polyfill: Boolean
+  pathPrefix: String
+}
+
+type SiteSiteMetadata {
+  title: String
+  description: String
+  author: String
+}
+
+type SitePage implements Node @dontInfer {
+  path: String!
+  component: String!
+  internalComponentName: String!
+  componentChunkName: String!
+  matchPath: String
+}
+
+enum ImageFormat {
+  NO_CHANGE
+  AUTO
+  JPG
+  PNG
+  WEBP
+}
+
+enum ImageFit {
+  COVER
+  CONTAIN
+  FILL
+  INSIDE
+  OUTSIDE
+}
+
+enum ImageLayout {
+  FIXED
+  FLUID
+  CONSTRAINED
+}
+
+enum ImageCropFocus {
+  CENTER
+  NORTH
+  NORTHEAST
+  EAST
+  SOUTHEAST
+  SOUTH
+  SOUTHWEST
+  WEST
+  NORTHWEST
+  ENTROPY
+  ATTENTION
+}
+
+input DuotoneGradient {
+  highlight: String!
+  shadow: String!
+  opacity: Int
+}
+
+enum PotraceTurnPolicy {
+  TURNPOLICY_BLACK
+  TURNPOLICY_WHITE
+  TURNPOLICY_LEFT
+  TURNPOLICY_RIGHT
+  TURNPOLICY_MINORITY
+  TURNPOLICY_MAJORITY
+}
+
+input Potrace {
+  turnPolicy: PotraceTurnPolicy
+  turdSize: Float
+  alphaMax: Float
+  optCurve: Boolean
+  optTolerance: Float
+  threshold: Int
+  blackOnWhite: Boolean
+  color: String
+  background: String
+}
+
+type ImageSharp implements Node @childOf(types: ["File"]) @dontInfer {
+  fixed(width: Int, height: Int, base64Width: Int, jpegProgressive: Boolean = true, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, traceSVG: Potrace, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpFixed
+  resolutions(width: Int, height: Int, base64Width: Int, jpegProgressive: Boolean = true, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, traceSVG: Potrace, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpResolutions @deprecated(reason: "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https://example.com/write-docs-and-fix-this-example-link")
+  fluid(
+    maxWidth: Int
+    maxHeight: Int
+    base64Width: Int
+    grayscale: Boolean = false
+    jpegProgressive: Boolean = true
+    pngCompressionSpeed: Int = 4
+    duotone: DuotoneGradient
+    traceSVG: Potrace
+    quality: Int
+    jpegQuality: Int
+    pngQuality: Int
+    webpQuality: Int
+    toFormat: ImageFormat = AUTO
+    toFormatBase64: ImageFormat = AUTO
+    cropFocus: ImageCropFocus = ATTENTION
+    fit: ImageFit = COVER
+    background: String = "rgba(0,0,0,1)"
+    rotate: Int = 0
+    trim: Float = 0
+    sizes: String = ""
+
+    """
+    A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]
+    """
+    srcSetBreakpoints: [Int] = []
+  ): ImageSharpFluid
+  sizes(
+    maxWidth: Int
+    maxHeight: Int
+    base64Width: Int
+    grayscale: Boolean = false
+    jpegProgressive: Boolean = true
+    pngCompressionSpeed: Int = 4
+    duotone: DuotoneGradient
+    traceSVG: Potrace
+    quality: Int
+    jpegQuality: Int
+    pngQuality: Int
+    webpQuality: Int
+    toFormat: ImageFormat = AUTO
+    toFormatBase64: ImageFormat = AUTO
+    cropFocus: ImageCropFocus = ATTENTION
+    fit: ImageFit = COVER
+    background: String = "rgba(0,0,0,1)"
+    rotate: Int = 0
+    trim: Float = 0
+    sizes: String = ""
+
+    """
+    A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]
+    """
+    srcSetBreakpoints: [Int] = []
+  ): ImageSharpSizes @deprecated(reason: "Sizes was deprecated in Gatsby v2. It's been renamed to \"fluid\" https://example.com/write-docs-and-fix-this-example-link")
+  gatsbyImageData(
+    """
+    The layout for the image.
+    FIXED: A static image sized, that does not resize according to the screen width
+    FLUID: The image resizes to fit its container. Pass a "sizes" option if it
+    isn't going to be the full width of the screen. 
+    CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    """
+    layout: ImageLayout = FIXED
+
+    """
+    Maximum display width of generated files. 
+    The actual largest image resolution will be this value multipled by the largest value in outputPixelDensities
+    This only applies when layout = FLUID or CONSTRAINED. For other layout types, use "width"
+    """
+    maxWidth: Int
+
+    """
+    If set, the generated image is a maximum of this height, cropping if necessary. 
+    If the image layout is "constrained" then the image will be limited to this height. 
+    If the aspect ratio of the image is different than the source, then the image will be cropped.
+    """
+    maxHeight: Int
+
+    """
+    The display width of the generated image. 
+    The actual largest image resolution will be this value multipled by the largest value in outputPixelDensities
+    Ignored if layout = FLUID or CONSTRAINED, where you should use "maxWidth" instead.
+    """
+    width: Int
+
+    """
+    If set, the height of the generated image. If omitted, it is calculated from
+    the supplied width, matching the aspect ratio of the source image.
+    """
+    height: Int
+
+    """
+    Format of generated placeholder image, displayed while the main image loads. 
+    BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    DOMINANT_COLOR: a solid color, calculated from the dominant color of the image. 
+    TRACED_SVG: a low-resolution traced SVG of the image.
+    NONE: no placeholder. Set "background" to use a fixed background color.
+    """
+    placeholder: ImagePlaceholder = BLURRED
+
+    """
+    Options for the low-resolution placeholder image. Set placeholder to "BLURRED" to use this
+    """
+    blurredOptions: BlurredOptions
+
+    """
+    Options for traced placeholder SVGs. You also should set placeholder to "SVG".
+    """
+    tracedSVGOptions: Potrace
+
+    """
+    The image formats to generate. Valid values are "AUTO" (meaning the same
+    format as the source image), "JPG", "PNG" and "WEBP". 
+    The default value is [AUTO, WEBP], and you should rarely need to change
+    this. Take care if you specify JPG or PNG when you do
+    not know the formats of the source images, as this could lead to unwanted
+    results such as converting JPEGs to PNGs. Specifying 
+    both PNG and JPG is not supported and will be ignored.
+    """
+    formats: [ImageFormat] = [WEBP]
+
+    """
+    A list of image pixel densities to generate. It will never generate images
+    larger than the source, and will always include a 1x image. 
+    Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1,
+    2] for fluid. In this case, an image with a fluid layout and width = 400
+    would generate images at 100, 200, 400 and 800px wide
+    """
+    outputPixelDensities: [Float]
+
+    """
+    The "sizes" property, passed to the img tag. This describes the display size of the image. 
+    This does not affect the generated images, but is used by the browser to
+    decide which images to download. You can leave this blank for fixed images,
+    or if the responsive image
+    container will be the full width of the screen. In these cases we will generate an appropriate value.
+    """
+    sizes: String = ""
+
+    """The default quality. This is overriden by any format-specific options"""
+    quality: Int
+
+    """Options to pass to sharp when generating JPG images."""
+    jpgOptions: JPGOptions
+
+    """Options to pass to sharp when generating PNG images."""
+    pngOptions: PNGOptions
+
+    """Options to pass to sharp when generating WebP images."""
+    webpOptions: WebPOptions
+
+    """
+    Options to pass to sharp to control cropping and other image manipulations.
+    """
+    transformOptions: TransformOptions
+
+    """
+    Background color applied to the wrapper. Also passed to sharp to use as a
+    background when "letterboxing" an image to another aspect ratio.
+    """
+    background: String = "rgba(0,0,0,0)"
+  ): JSON!
+  original: ImageSharpOriginal
+  resize(width: Int, height: Int, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, jpegProgressive: Boolean = true, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, base64: Boolean = false, traceSVG: Potrace, toFormat: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpResize
+}
+
+type ImageSharpFixed {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float
+  width: Float!
+  height: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  originalName: String
+}
+
+type ImageSharpResolutions {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float
+  width: Float!
+  height: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  originalName: String
+}
+
+type ImageSharpFluid {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  sizes: String!
+  originalImg: String
+  originalName: String
+  presentationWidth: Int!
+  presentationHeight: Int!
+}
+
+type ImageSharpSizes {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  sizes: String!
+  originalImg: String
+  originalName: String
+  presentationWidth: Int!
+  presentationHeight: Int!
+}
+
+enum ImagePlaceholder {
+  DOMINANT_COLOR
+  TRACED_SVG
+  BLURRED
+  NONE
+}
+
+input BlurredOptions {
+  """Width of the generated low-res preview. Default is 20px"""
+  width: Int
+
+  """
+  Force the output format for the low-res preview. Default is to use the same
+  format as the input. You should rarely need to change this
+  """
+  toFormat: ImageFormat
+}
+
+input JPGOptions {
+  quality: Int
+  progressive: Boolean = true
+}
+
+input PNGOptions {
+  quality: Int
+  compressionSpeed: Int = 4
+}
+
+input WebPOptions {
+  quality: Int
+}
+
+input TransformOptions {
+  grayscale: Boolean = false
+  duotone: DuotoneGradient
+  rotate: Int = 0
+  trim: Float = 0
+  cropFocus: ImageCropFocus = ATTENTION
+  fit: ImageFit = COVER
+}
+
+type ImageSharpOriginal {
+  width: Float
+  height: Float
+  src: String
+}
+
+type ImageSharpResize {
+  src: String
+  tracedSVG: String
+  width: Int
+  height: Int
+  aspectRatio: Float
+  originalName: String
+}
+
+interface ContentfulEntry @nodeInterface {
+  contentful_id: String!
+  id: ID!
+  node_locale: String!
+}
+
+interface ContentfulReference {
+  contentful_id: String!
+  id: ID!
+}
+
+type ContentfulAsset implements ContentfulReference & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  file: ContentfulAssetFile
+  title: String
+  description: String
+  node_locale: String
+  sys: ContentfulAssetSys
+}
+
+type ContentfulAssetFile @derivedTypes {
+  url: String
+  details: ContentfulAssetFileDetails
+  fileName: String
+  contentType: String
+}
+
+type ContentfulAssetFileDetails @derivedTypes {
+  size: Int
+  image: ContentfulAssetFileDetailsImage
+}
+
+type ContentfulAssetFileDetailsImage {
+  width: Int
+  height: Int
+}
+
+type ContentfulAssetSys {
+  type: String
+  revision: Int
+}
+
+type ContentfulPage implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  slug: String
+  category: String
+  header: ContentfulHeader @link(by: "id", from: "header___NODE")
+  contentBlocks: [ContentfulContentBlock] @link(by: "id", from: "contentBlocks___NODE")
+  footer: ContentfulFooter @link(by: "id", from: "footer___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulPageSys
+}
+
+type ContentfulHeader implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  entryTitle: String
+  logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
+  links: [ContentfulLink] @link(by: "id", from: "links___NODE")
+  page: [ContentfulPage] @link(by: "id", from: "page___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulHeaderSys
+}
+
+type ContentfulLink implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  entryTitle: String
+  linkRichText: ContentfulLinkLinkRichText
+  component_hero: [ContentfulComponentHero] @link(by: "id", from: "component hero___NODE") @proxy(from: "component hero___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulLinkSys
+  header: [ContentfulHeader] @link(by: "id", from: "header___NODE")
+  footer: [ContentfulFooter] @link(by: "id", from: "footer___NODE")
+}
+
+type ContentfulLinkLinkRichText {
+  raw: String
+  references: [ContentfulPage] @link(by: "id", from: "references___NODE")
+}
+
+type ContentfulComponentHero implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  entryTitle: String
+  richText: ContentfulComponentHeroRichText
+  ctaButton: ContentfulLink @link(by: "id", from: "ctaButton___NODE")
+  media: [ContentfulAsset] @link(by: "id", from: "media___NODE")
+  content_block: [ContentfulContentBlock] @link(by: "id", from: "content block___NODE") @proxy(from: "content block___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulComponentHeroSys
+}
+
+type ContentfulComponentHeroRichText {
+  raw: String
+}
+
+type ContentfulContentBlock implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  entryTitle: String
+  components: [ContentfulComponentCardContentfulComponentHeroContentfulComponentProductUnion] @link(by: "id", from: "components___NODE")
+  page: [ContentfulPage] @link(by: "id", from: "page___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulContentBlockSys
+  richText: ContentfulContentBlockRichText
+}
+
+union ContentfulComponentCardContentfulComponentHeroContentfulComponentProductUnion = ContentfulComponentCard | ContentfulComponentHero | ContentfulComponentProduct
+
+type ContentfulContentBlockSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulContentBlockSysContentType
+}
+
+type ContentfulContentBlockSysContentType @derivedTypes {
+  sys: ContentfulContentBlockSysContentTypeSys
+}
+
+type ContentfulContentBlockSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulContentBlockRichText {
+  raw: String
+}
+
+type ContentfulComponentHeroSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulComponentHeroSysContentType
+}
+
+type ContentfulComponentHeroSysContentType @derivedTypes {
+  sys: ContentfulComponentHeroSysContentTypeSys
+}
+
+type ContentfulComponentHeroSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulLinkSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulLinkSysContentType
+}
+
+type ContentfulLinkSysContentType @derivedTypes {
+  sys: ContentfulLinkSysContentTypeSys
+}
+
+type ContentfulLinkSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulFooter implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  entryTitle: String
+  logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
+  links: [ContentfulLink] @link(by: "id", from: "links___NODE")
+  page: [ContentfulPage] @link(by: "id", from: "page___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulFooterSys
+}
+
+type ContentfulFooterSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulFooterSysContentType
+}
+
+type ContentfulFooterSysContentType @derivedTypes {
+  sys: ContentfulFooterSysContentTypeSys
+}
+
+type ContentfulFooterSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulHeaderSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulHeaderSysContentType
+}
+
+type ContentfulHeaderSysContentType @derivedTypes {
+  sys: ContentfulHeaderSysContentTypeSys
+}
+
+type ContentfulHeaderSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulPageSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulPageSysContentType
+}
+
+type ContentfulPageSysContentType @derivedTypes {
+  sys: ContentfulPageSysContentTypeSys
+}
+
+type ContentfulPageSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulComponentCard implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  entryTitle: String
+  richText: ContentfulComponentCardRichText
+  content_block: [ContentfulContentBlock] @link(by: "id", from: "content block___NODE") @proxy(from: "content block___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulComponentCardSys
+}
+
+type ContentfulComponentCardRichText {
+  raw: String
+  references: [ContentfulLinkContentfulPageUnion] @link(by: "id", from: "references___NODE")
+}
+
+union ContentfulLinkContentfulPageUnion = ContentfulLink | ContentfulPage
+
+type ContentfulComponentCardSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulComponentCardSysContentType
+}
+
+type ContentfulComponentCardSysContentType @derivedTypes {
+  sys: ContentfulComponentCardSysContentTypeSys
+}
+
+type ContentfulComponentCardSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulComponentProduct implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  purchaseUrl: String!
+  entryTitle: String
+  name: String
+  cardSummary: ContentfulComponentProductCardSummary
+  description: ContentfulComponentProductDescription
+  price: String
+  code: String
+  image: ContentfulAsset @link(by: "id", from: "image___NODE")
+  content_block: [ContentfulContentBlock] @link(by: "id", from: "content block___NODE") @proxy(from: "content block___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulComponentProductSys
+}
+
+type ContentfulComponentProductCardSummary {
+  raw: String
+}
+
+type ContentfulComponentProductDescription {
+  raw: String
+}
+
+type ContentfulComponentProductSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulComponentProductSysContentType
+}
+
+type ContentfulComponentProductSysContentType @derivedTypes {
+  sys: ContentfulComponentProductSysContentTypeSys
+}
+
+type ContentfulComponentProductSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulContentType implements Node @derivedTypes @dontInfer {
+  name: String
+  displayField: String
+  description: String
+  sys: ContentfulContentTypeSys
+}
+
+type ContentfulContentTypeSys {
+  type: String
+}
