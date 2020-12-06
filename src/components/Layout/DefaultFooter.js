@@ -16,8 +16,8 @@ const options = {
   },
 }
 
-const DefaultHeader = ({ data }) => (
-  <header>
+const DefaultFooter = ({ data }) => (
+  <footer>
     <Link to="/">
       <img src={data.logo.file.url} alt="Gatsby Tests" />
     </Link>
@@ -29,11 +29,13 @@ const DefaultHeader = ({ data }) => (
         </li>
       ))}
     </ul>
-  </header>
+
+    <p>©{new Date().getFullYear()} Gatsby Tests</p>
+  </footer>
 );
 
-export const DefaultHeaderFragment = graphql`
-  fragment DefaultHeaderFragment on ContentfulHeader {
+export const DefaultFooterFragment = graphql`
+  fragment DefaultFooterFragment on ContentfulFooter {
     logo {
       file {
         url
@@ -54,4 +56,4 @@ export const DefaultHeaderFragment = graphql`
   }
 `;
 
-export default DefaultHeader;
+export default DefaultFooter;

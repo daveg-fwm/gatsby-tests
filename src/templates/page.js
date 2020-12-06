@@ -1,13 +1,15 @@
 import React from 'react';
 import { graphql } from "gatsby";
 
-import ContentBlocks from "../components/ContentBlocks";
 import Layout from "../components/Layout";
+import DefaultHeader from "../components/Layout/DefaultHeader";
+import DefaultFooter from "../components/Layout/DefaultFooter";
+// import ContentBlocks from "../components/ContentBlocks";
 
 const page = ({ pageContext, data }) => {
   const { locale } = pageContext;
-  const { header, contentBlocks, footer } = data;
-
+  const { header, footer } = data.contentfulPage;
+console.log(footer)
   return (
     <Layout
       seo={{
@@ -16,21 +18,25 @@ const page = ({ pageContext, data }) => {
       header={header}
       footer={footer}
     >
-      <ContentBlocks contentBlocks={contentBlocks} />
+      <DefaultHeader data={header} />
+      {/* <ContentBlocks contentBlocks={contentBlocks} /> */}
+      <DefaultFooter data={footer} />
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
   query PageQuery($slug: String!) {
-    header {
-      ...DefaultHeaderFragment
-    }
-    contentBlocks {
-      ...ContentBlocksFragment
-    }
-    footer {
-      ...DefaultFooterFragment
+    contentfulPage(slug: { eq: $slug }) {
+      header {
+        ...DefaultHeaderFragment
+      }
+      #contentBlocks {
+      #  ...ContentBlocksFragment
+      #}
+      footer {
+        ...DefaultFooterFragment
+      }
     }
   }
 `;

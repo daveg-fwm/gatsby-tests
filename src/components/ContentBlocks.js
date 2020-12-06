@@ -25,7 +25,7 @@ const ContentBlocks = (props) => (
   </>
 );
 
-export const contentBlocksFragment = graphql`
+export const ContentBlocksFragment = graphql`
   fragment ContentBlocksFragment on Node {
     id
     type: __typename

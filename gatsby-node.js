@@ -6,15 +6,15 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
   const typeDefs = [
     schema.buildObjectType({
-      name: "ContentfulComponentPage",
+      name: "ContentfulPage",
       fields: {
         slug: {
           type: "String!",
           resolve: source => {
             const { slug, category } = source;
-            const ignoreCategories = ["none", "home"];
+            const ignoredCategories = ["none", "home"];
 
-            if (!category.includes(ignoreCategories)) {
+            if (!ignoredCategories.includes(category)) {
               const validSlug = slug.startsWith(`/${category}/`);
 
               return !validSlug ? `/${category}${slug}` : slug;
@@ -79,6 +79,7 @@ exports.createPages = async ({ graphql, actions }) => {
     actions.createPage({
       component: pageTemplate,
       context: {
+        slug,
         locale: node_locale,
       },
       path: slug,

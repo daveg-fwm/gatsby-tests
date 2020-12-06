@@ -1,4 +1,4 @@
-### Type definitions saved at 2020-12-05T12:45:20.954Z ###
+### Type definitions saved at 2020-12-06T14:00:31.418Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -487,7 +487,7 @@ type ContentfulAssetSys {
 type ContentfulPage implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
   contentful_id: String!
   node_locale: String!
-  slug: String
+  slug: String!
   category: String
   header: ContentfulHeader @link(by: "id", from: "header___NODE")
   contentBlocks: [ContentfulContentBlock] @link(by: "id", from: "contentBlocks___NODE")

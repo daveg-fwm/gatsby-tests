@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const Seo = ({ description, lang, meta, title, seo }) => {
+const Seo = ({ description, meta = [], title, seo }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -25,7 +25,7 @@ const Seo = ({ description, lang, meta, title, seo }) => {
       htmlAttributes={{
         lang: seo.lang,
       }}
-      title={title}
+      title={defaultTitle}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={[
         {
