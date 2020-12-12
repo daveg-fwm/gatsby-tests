@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 import theme from "../../theme";
 import Seo from "./Seo";
@@ -49,19 +49,21 @@ const GlobalStyles = createGlobalStyle`
     line-height: ${props => props.theme.font.lineHeight.heading};
     margin-top: 0;
   }
+
+  main {
+    max-width: ${props => props.theme.layout.container.width};
+    margin: 100px auto;
+  }
 `;
 
-const StyledMain = styled.main`
-  max-width: ${props => props.theme.layout.container.width};
-  margin: 100px auto;
-`;
-
-const Layout = ({ children, seo }) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyles />
-    <Seo seo={seo} />
-    <StyledMain>{children}</StyledMain>
-  </ThemeProvider>
-);
+const Layout = ({ children, seo }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Seo seo={seo} />
+      {children}
+    </ThemeProvider>
+  );
+};
 
 export default Layout;

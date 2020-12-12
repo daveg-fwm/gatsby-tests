@@ -1,36 +1,61 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
-import { INLINES } from "@contentful/rich-text-types";
+import { graphql, Link as GatsbyLink } from "gatsby";
+import styled from "styled-components";
 
-const options = {
-  renderNode: {
-    [INLINES.ENTRY_HYPERLINK]: ({
-      content: {
-        "0": { value },
-      },
-      data: {
-        target: { slug },
-      },
-    }) => <Link to={slug}>{value}</Link>,
-  },
-}
+import Link from "../Link";
 
-const DefaultHeader = ({ data }) => (
-  <header>
-    <Link to="/">
-      <img src={data.logo.file.url} alt="Gatsby Tests" />
-    </Link>
+const StyledHeader = styled.header`
+  display: grid;
+  grid-template-columns: 200px auto;
+  justify-content: space-between;
+  padding: 20px 40px;
+`;
 
-    <ul>
-      {data.links.map((link, index) => (
-        <li key={index}>
-          {renderRichText(link.linkRichText, options)}
-        </li>
-      ))}
-    </ul>
-  </header>
-);
+const StyledLogo = styled.img`
+  height: 40px;
+`;
+
+const StyledUl = styled.ul`
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 20px;
+`;
+
+const StyledLi = styled.li`
+  * {
+    height: 100%;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const DefaultHeader = ({ data }) => {
+  return (
+    <StyledHeader>
+      <GatsbyLink to="/">
+        <StyledLogo src={data.logo.file.url} alt="Gatsby Tests" />
+      </GatsbyLink>
+
+      <StyledUl>
+        {data.links.map((link, index) => (
+          <StyledLi key={index}>
+            <Link linkRichText={link.linkRichText} />
+          </StyledLi>
+        ))}
+      </StyledUl>
+    </StyledHeader>
+  );
+};
 
 export const DefaultHeaderFragment = graphql`
   fragment DefaultHeaderFragment on ContentfulHeader {
@@ -40,16 +65,7 @@ export const DefaultHeaderFragment = graphql`
       }
     }
     links {
-      linkRichText {
-        raw
-        references {
-          ... on ContentfulPage {
-            # contentful_id is required to resolve the references
-            contentful_id
-            slug
-          }
-        }
-      }
+      ...LinkFragment
     }
   }
 `;

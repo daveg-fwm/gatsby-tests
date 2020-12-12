@@ -4,12 +4,12 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import DefaultHeader from "../components/Layout/DefaultHeader";
 import DefaultFooter from "../components/Layout/DefaultFooter";
-// import ContentBlocks from "../components/ContentBlocks";
+import ContentBlocks from "../components/ContentBlocks";
 
 const page = ({ pageContext, data }) => {
   const { locale } = pageContext;
-  const { header, footer } = data.contentfulPage;
-console.log(footer)
+  const { header, contentBlocks, footer } = data.contentfulPage;
+
   return (
     <Layout
       seo={{
@@ -19,21 +19,23 @@ console.log(footer)
       footer={footer}
     >
       <DefaultHeader data={header} />
-      {/* <ContentBlocks contentBlocks={contentBlocks} /> */}
+        <main>
+          <ContentBlocks contentBlocks={contentBlocks} />
+        </main>
       <DefaultFooter data={footer} />
     </Layout>
   );
 }
 
-export const pageQuery = graphql`
+export const PageQuery = graphql`
   query PageQuery($slug: String!) {
     contentfulPage(slug: { eq: $slug }) {
       header {
         ...DefaultHeaderFragment
       }
-      #contentBlocks {
-      #  ...ContentBlocksFragment
-      #}
+      contentBlocks {
+       ...ContentBlocksFragment
+      }
       footer {
         ...DefaultFooterFragment
       }

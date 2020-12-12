@@ -18,6 +18,9 @@ export default {
       heading: 1.1
     }
   },
+  color: {
+    cta: "#663399"
+  },
   border: {
     radius: {
       small: "4px",
