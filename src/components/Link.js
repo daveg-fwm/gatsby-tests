@@ -4,19 +4,22 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { INLINES } from "@contentful/rich-text-types";
 import styled, { css } from "styled-components";
 
-const StyledGatsbyLink = styled(GatsbyLink)`
-  ${props =>
-    props.isButton &&
-    css`
-      display: inline-block;
-      margin: 20px 0;
-      padding: 15px 20px;
-      color: #fff;
-      background-color: ${props.theme.color.cta};
-      border-radius: ${props.theme.border.radius.small};
-      text-decoration: none;
-    `
-  }
+const buttonStyles = css`
+  display: inline-block;
+  padding: 15px 20px;
+  color: #fff;
+  background-color: ${props => props.theme.color.cta};
+  border-radius: ${props => props.theme.border.radius.small};
+  text-decoration: none;
+  text-align: center;
+`
+
+export const StyledGatsbyLinkButton = styled(GatsbyLink)`
+  ${buttonStyles};
+`;
+
+export const StyledButton = styled.a`
+  ${buttonStyles};
 `;
 
 const options = {
@@ -28,16 +31,32 @@ const options = {
       data: {
         target: { slug },
       },
-    }) => (
-      <StyledGatsbyLink to={slug} isButton={options.isButton}>
-        {value}
-      </StyledGatsbyLink>
-    ),
+    }) => {
+      if (options.isButton) {
+        return (
+          <StyledGatsbyLinkButton to={slug}>
+            {value}
+          </StyledGatsbyLinkButton>
+        );
+      }
+
+      return (
+        <GatsbyLink to={slug}>{value}</GatsbyLink>
+      );
+    },
   },
 };
 
-const Link = ({ linkRichText, isButton }) => {
+const Link = ({ children, linkRichText, isButton, href, target }) => {
   const allOptions = Object.assign(options, { isButton });
+
+  if (!linkRichText) {
+    return (
+      <a href={href} target={target ? target : "_self"}>
+        {children}
+      </a>
+    );
+  }
 
   return (
     renderRichText(linkRichText, allOptions)

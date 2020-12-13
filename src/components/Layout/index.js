@@ -31,6 +31,10 @@ const GlobalStyles = createGlobalStyle`
     margin-top: 0;
   }
 
+  a {
+    font-size: ${props => props.theme.font.size.body};
+  }
+
   h1 {
     font-size: ${props => props.theme.font.size.huge};
   }

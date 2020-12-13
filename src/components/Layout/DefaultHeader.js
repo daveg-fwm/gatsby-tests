@@ -40,15 +40,17 @@ const StyledLi = styled.li`
 `;
 
 const DefaultHeader = ({ data }) => {
+  const { logo, links } = data;
+
   return (
     <StyledHeader>
       <GatsbyLink to="/">
-        <StyledLogo src={data.logo.file.url} alt="Gatsby Tests" />
+        <StyledLogo src={logo.file.url} alt="Gatsby Tests" />
       </GatsbyLink>
 
       <StyledUl>
-        {data.links.map((link, index) => (
-          <StyledLi key={index}>
+        {links.map((link, linkIndex) => (
+          <StyledLi key={`headerLink-${linkIndex}`}>
             <Link linkRichText={link.linkRichText} />
           </StyledLi>
         ))}

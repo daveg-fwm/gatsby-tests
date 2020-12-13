@@ -13,6 +13,10 @@ const StyledHeroContainer = styled.div`
   text-align: center;
 `;
 
+const StyledLinkWrapper = styled.div`
+  margin: 20px 0;
+`;
+
 const StyledMediaContainer = styled.div`
   display: grid;
   grid-template: repeat(2, min-content) / repeat(2, min-content);
@@ -21,13 +25,18 @@ const StyledMediaContainer = styled.div`
 `;
 
 const Hero = ({ content }) => {
+  const { richText, ctaButton, media } = content;
+
   return (
     <StyledHeroContainer>
-      {renderRichText(content.richText, {})}
-      <Link linkRichText={content.ctaButton.linkRichText} isButton />
+      {renderRichText(richText, {})}
+
+      <StyledLinkWrapper>
+        <Link linkRichText={ctaButton.linkRichText} isButton />
+      </StyledLinkWrapper>
 
       <StyledMediaContainer>
-        {content.media.map((image, imageIndex) => (
+        {media.map((image, imageIndex) => (
           <Img key={`heroImage-${imageIndex}`} fixed={image.fixed} alt={image.title} />
         ))}
       </StyledMediaContainer>

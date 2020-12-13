@@ -1,4 +1,4 @@
-### Type definitions saved at 2020-12-12T14:28:57.198Z ###
+### Type definitions saved at 2020-12-13T13:07:29.666Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -516,18 +516,63 @@ type ContentfulLink implements ContentfulReference & ContentfulEntry & Node @der
   node_locale: String!
   entryTitle: String
   linkRichText: ContentfulLinkLinkRichText
-  component_hero: [ContentfulComponentHero] @link(by: "id", from: "component hero___NODE") @proxy(from: "component hero___NODE")
+  header: [ContentfulHeader] @link(by: "id", from: "header___NODE")
+  footer: [ContentfulFooter] @link(by: "id", from: "footer___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulLinkSys
-  header: [ContentfulHeader] @link(by: "id", from: "header___NODE")
-  footer: [ContentfulFooter] @link(by: "id", from: "footer___NODE")
+  component_hero: [ContentfulComponentHero] @link(by: "id", from: "component hero___NODE") @proxy(from: "component hero___NODE")
 }
 
 type ContentfulLinkLinkRichText {
   raw: String
   references: [ContentfulPage] @link(by: "id", from: "references___NODE")
+}
+
+type ContentfulFooter implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  entryTitle: String
+  logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
+  links: [ContentfulLink] @link(by: "id", from: "links___NODE")
+  page: [ContentfulPage] @link(by: "id", from: "page___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulFooterSys
+}
+
+type ContentfulFooterSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulFooterSysContentType
+}
+
+type ContentfulFooterSysContentType @derivedTypes {
+  sys: ContentfulFooterSysContentTypeSys
+}
+
+type ContentfulFooterSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulLinkSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulLinkSysContentType
+}
+
+type ContentfulLinkSysContentType @derivedTypes {
+  sys: ContentfulLinkSysContentTypeSys
+}
+
+type ContentfulLinkSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
 }
 
 type ContentfulComponentHero implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
@@ -552,6 +597,7 @@ type ContentfulContentBlock implements ContentfulReference & ContentfulEntry & N
   contentful_id: String!
   node_locale: String!
   entryTitle: String
+  numberOfColumns: Int
   components: [ContentfulComponentCardContentfulComponentHeroContentfulComponentProductUnion] @link(by: "id", from: "components___NODE")
   page: [ContentfulPage] @link(by: "id", from: "page___NODE")
   spaceId: String
@@ -594,51 +640,6 @@ type ContentfulComponentHeroSysContentType @derivedTypes {
 }
 
 type ContentfulComponentHeroSysContentTypeSys {
-  type: String
-  linkType: String
-  id: String
-}
-
-type ContentfulLinkSys @derivedTypes {
-  type: String
-  revision: Int
-  contentType: ContentfulLinkSysContentType
-}
-
-type ContentfulLinkSysContentType @derivedTypes {
-  sys: ContentfulLinkSysContentTypeSys
-}
-
-type ContentfulLinkSysContentTypeSys {
-  type: String
-  linkType: String
-  id: String
-}
-
-type ContentfulFooter implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
-  contentful_id: String!
-  node_locale: String!
-  entryTitle: String
-  logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
-  links: [ContentfulLink] @link(by: "id", from: "links___NODE")
-  page: [ContentfulPage] @link(by: "id", from: "page___NODE")
-  spaceId: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-  sys: ContentfulFooterSys
-}
-
-type ContentfulFooterSys @derivedTypes {
-  type: String
-  revision: Int
-  contentType: ContentfulFooterSysContentType
-}
-
-type ContentfulFooterSysContentType @derivedTypes {
-  sys: ContentfulFooterSysContentTypeSys
-}
-
-type ContentfulFooterSysContentTypeSys {
   type: String
   linkType: String
   id: String
@@ -690,10 +691,8 @@ type ContentfulComponentCard implements ContentfulReference & ContentfulEntry & 
 
 type ContentfulComponentCardRichText {
   raw: String
-  references: [ContentfulLinkContentfulPageUnion] @link(by: "id", from: "references___NODE")
+  references: [ContentfulPage] @link(by: "id", from: "references___NODE")
 }
-
-union ContentfulLinkContentfulPageUnion = ContentfulLink | ContentfulPage
 
 type ContentfulComponentCardSys @derivedTypes {
   type: String
@@ -717,8 +716,8 @@ type ContentfulComponentProduct implements ContentfulReference & ContentfulEntry
   purchaseUrl: String!
   entryTitle: String
   name: String
-  cardSummary: ContentfulComponentProductCardSummary
-  description: ContentfulComponentProductDescription
+  cardSummaryRichText: ContentfulComponentProductCardSummaryRichText
+  descriptionRichText: ContentfulComponentProductDescriptionRichText
   price: String
   code: String
   image: ContentfulAsset @link(by: "id", from: "image___NODE")
@@ -729,11 +728,11 @@ type ContentfulComponentProduct implements ContentfulReference & ContentfulEntry
   sys: ContentfulComponentProductSys
 }
 
-type ContentfulComponentProductCardSummary {
+type ContentfulComponentProductCardSummaryRichText {
   raw: String
 }
 
-type ContentfulComponentProductDescription {
+type ContentfulComponentProductDescriptionRichText {
   raw: String
 }
 

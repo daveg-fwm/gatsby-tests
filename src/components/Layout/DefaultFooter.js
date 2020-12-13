@@ -46,15 +46,17 @@ const StyledCopyright = styled.p`
 `;
 
 const DefaultFooter = ({ data }) => {
+  const { logo, links } = data;
+
   return (
     <StyledFooter>
       <GatsbyLink to="/">
-        <StyledLogo src={data.logo.file.url} alt="Gatsby Tests" />
+        <StyledLogo src={logo.file.url} alt="Gatsby Tests" />
       </GatsbyLink>
 
       <StyledUl>
-        {data.links.map((link, index) => (
-          <StyledLi key={index}>
+        {links.map((link, linkIndex) => (
+          <StyledLi key={`footerLink-${linkIndex}`}>
             <Link linkRichText={link.linkRichText} />
           </StyledLi>
         ))}
