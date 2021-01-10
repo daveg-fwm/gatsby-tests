@@ -42,7 +42,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
    */
   fs.unlink('./schema.gql', (err) => {
     if (err) {
-      console.info("Creating schema for the first time! :D");
+      console.info("Creating schema file for the first time! :D");
     }
 
     actions.printTypeDefinitions({});
