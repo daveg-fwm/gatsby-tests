@@ -15,8 +15,6 @@ const page = ({ pageContext, data }) => {
       seo={{
         lang: locale.substr(0, 2)
       }}
-      header={header}
-      footer={footer}
     >
       <DefaultHeader data={header} />
         <main>
