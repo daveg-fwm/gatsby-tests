@@ -2,8 +2,6 @@ const fs = require('fs');
 const path = require("path");
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
-  const { createTypes } = actions;
-
   const typeDefs = [
     schema.buildObjectType({
       name: "ContentfulPage",
@@ -36,7 +34,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     }),
   ];
 
-  createTypes(typeDefs);
+  actions.createTypes(typeDefs);
 
   /*
    * Only creates the types necessary to recreate all type definitions.

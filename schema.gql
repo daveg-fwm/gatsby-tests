@@ -1,4 +1,4 @@
-### Type definitions saved at 2020-12-13T13:07:29.666Z ###
+### Type definitions saved at 2021-01-10T12:10:26.294Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -597,6 +597,7 @@ type ContentfulContentBlock implements ContentfulReference & ContentfulEntry & N
   contentful_id: String!
   node_locale: String!
   entryTitle: String
+  richText: ContentfulContentBlockRichText
   numberOfColumns: Int
   components: [ContentfulComponentCardContentfulComponentHeroContentfulComponentProductUnion] @link(by: "id", from: "components___NODE")
   page: [ContentfulPage] @link(by: "id", from: "page___NODE")
@@ -604,7 +605,10 @@ type ContentfulContentBlock implements ContentfulReference & ContentfulEntry & N
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulContentBlockSys
-  richText: ContentfulContentBlockRichText
+}
+
+type ContentfulContentBlockRichText {
+  raw: String
 }
 
 union ContentfulComponentCardContentfulComponentHeroContentfulComponentProductUnion = ContentfulComponentCard | ContentfulComponentHero | ContentfulComponentProduct
@@ -623,10 +627,6 @@ type ContentfulContentBlockSysContentTypeSys {
   type: String
   linkType: String
   id: String
-}
-
-type ContentfulContentBlockRichText {
-  raw: String
 }
 
 type ContentfulComponentHeroSys @derivedTypes {
