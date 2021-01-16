@@ -2,8 +2,8 @@ import React from 'react';
 import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
-import DefaultHeader from "../components/Layout/DefaultHeader";
-import DefaultFooter from "../components/Layout/DefaultFooter";
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
 import ContentBlocks from "../components/ContentBlocks";
 
 const page = ({ pageContext, data }) => {
@@ -16,11 +16,11 @@ const page = ({ pageContext, data }) => {
         lang: locale.substr(0, 2)
       }}
     >
-      <DefaultHeader data={header} />
+      <Header data={header} />
         <main>
           <ContentBlocks contentBlocks={contentBlocks} />
         </main>
-      <DefaultFooter data={footer} />
+      <Footer data={footer} />
     </Layout>
   );
 }
@@ -29,13 +29,13 @@ export const PageQuery = graphql`
   query PageQuery($slug: String!) {
     contentfulPage(slug: { eq: $slug }) {
       header {
-        ...DefaultHeaderFragment
+        ...HeaderFragment
       }
       contentBlocks {
        ...ContentBlocksFragment
       }
       footer {
-        ...DefaultFooterFragment
+        ...FooterFragment
       }
     }
   }

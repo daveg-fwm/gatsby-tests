@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-01-10T12:10:26.294Z ###
+### Type definitions saved at 2021-01-16T12:47:42.590Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -502,6 +502,7 @@ type ContentfulHeader implements ContentfulReference & ContentfulEntry & Node @d
   contentful_id: String!
   node_locale: String!
   entryTitle: String
+  category: String
   logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
   links: [ContentfulLink] @link(by: "id", from: "links___NODE")
   page: [ContentfulPage] @link(by: "id", from: "page___NODE")
@@ -534,6 +535,7 @@ type ContentfulFooter implements ContentfulReference & ContentfulEntry & Node @d
   contentful_id: String!
   node_locale: String!
   entryTitle: String
+  category: String
   logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
   links: [ContentfulLink] @link(by: "id", from: "links___NODE")
   page: [ContentfulPage] @link(by: "id", from: "page___NODE")

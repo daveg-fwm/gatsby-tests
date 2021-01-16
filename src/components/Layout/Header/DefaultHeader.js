@@ -1,8 +1,8 @@
 import React from "react";
-import { graphql, Link as GatsbyLink } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import styled from "styled-components";
 
-import Link from "../Link";
+import Link from "../../Link";
 
 const StyledHeader = styled.header`
   display: grid;
@@ -58,18 +58,5 @@ const DefaultHeader = ({ data }) => {
     </StyledHeader>
   );
 };
-
-export const DefaultHeaderFragment = graphql`
-  fragment DefaultHeaderFragment on ContentfulHeader {
-    logo {
-      file {
-        url
-      }
-    }
-    links {
-      ...LinkFragment
-    }
-  }
-`;
 
 export default DefaultHeader;

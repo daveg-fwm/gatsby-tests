@@ -1,8 +1,8 @@
 import React from "react";
-import { graphql, Link as GatsbyLink } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import styled from "styled-components";
 
-import Link from "../Link";
+import Link from "../../Link";
 
 const StyledFooter = styled.footer`
   display: grid;
@@ -66,18 +66,5 @@ const DefaultFooter = ({ data }) => {
     </StyledFooter>
   );
 };
-
-export const DefaultFooterFragment = graphql`
-  fragment DefaultFooterFragment on ContentfulFooter {
-    logo {
-      file {
-        url
-      }
-    }
-    links {
-      ...LinkFragment
-    }
-  }
-`;
 
 export default DefaultFooter;
