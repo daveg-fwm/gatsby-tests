@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS } from "@contentful/rich-text-types";
 
@@ -10,7 +10,14 @@ import Product from "./Product";
 
 const StyledSection = styled.section`
   display: grid;
-  gap: 50px ${props => 100 / props.numberOfColumns}px;
+  row-gap: 50px;
+
+  ${props =>
+    props.numberOfColumns > 1 &&
+    css`
+      column-gap: ${props => 100 / props.numberOfColumns}px;
+    `
+  };
 
   &:not(:first-of-type) {
     margin-top: 100px;
