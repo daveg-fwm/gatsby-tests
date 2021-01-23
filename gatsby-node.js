@@ -50,7 +50,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const pageTemplate = path.resolve("src/templates/page.js");
+  const pageTemplate = path.resolve("src/templates/Page.js");
 
   const result = await graphql(`
     {

@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-01-16T12:47:42.590Z ###
+### Type definitions saved at 2021-01-17T15:09:05.377Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -716,6 +716,7 @@ type ContentfulComponentProduct implements ContentfulReference & ContentfulEntry
   contentful_id: String!
   node_locale: String!
   purchaseUrl: String!
+  joke: String
   entryTitle: String
   name: String
   cardSummaryRichText: ContentfulComponentProductCardSummaryRichText

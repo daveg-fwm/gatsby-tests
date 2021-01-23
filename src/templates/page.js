@@ -6,7 +6,7 @@ import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import ContentBlocks from "../components/ContentBlocks";
 
-const page = ({ pageContext, data }) => {
+const Page = ({ pageContext, data }) => {
   const { locale } = pageContext;
   const { header, contentBlocks, footer } = data.contentfulPage;
 
@@ -41,4 +41,4 @@ export const PageQuery = graphql`
   }
 `;
 
-export default page;
+export default Page;
