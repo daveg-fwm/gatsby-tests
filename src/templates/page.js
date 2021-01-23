@@ -16,11 +16,11 @@ const Page = ({ pageContext, data }) => {
         lang: locale.substr(0, 2)
       }}
     >
-      <Header data={header} />
+      {header && <Header data={header} />}
         <main>
-          <ContentBlocks contentBlocks={contentBlocks} />
+          {contentBlocks && <ContentBlocks contentBlocks={contentBlocks} />}
         </main>
-      <Footer data={footer} />
+      {footer && <Footer data={footer} />}
     </Layout>
   );
 }
