@@ -2,7 +2,7 @@
 
 <br>
 
-### GraphQL is <span style="color:#e10098">explicit</span> and <span style="color:#e10098">type safe</span> which means:
+### GraphQL is _explicit_ and _type safe_ which means:
 
 - it can only know what you tell it to know ie: data type definitions
 - it can only validate, manipulate or transform data if you tell it to ie: data resolvers
