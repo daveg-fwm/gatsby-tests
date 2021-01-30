@@ -30,6 +30,17 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
           type: "String!",
           resolve: source => process.env.PURCHASE_URL.replace("{code}", source.code),
         },
+        name: {
+          type: "String!",
+          args: {
+            showModelCode: "Boolean",
+          },
+          resolve: (source, args, context, info) => {
+            const nameWithCode = `${source.name} - ${source.code}`;
+
+            return args.showModelCode ? nameWithCode  : source.name;
+          },
+        },
       },
     }),
   ];

@@ -41,7 +41,7 @@ export const ComponentProductFragment = graphql`
         ...GatsbyContentfulFluid_withWebp
       }
     }
-    name
+    name(showModelCode: true)
     descriptionRichText {
       raw
     }
