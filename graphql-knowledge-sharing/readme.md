@@ -1,10 +1,12 @@
 # GraphQL Knowledge Sharing
+
 <br>
 
 ### GraphQL is **explicit** and **type safe** which means:
 
 - it can only know what you tell it to know ie: data type definitions
 - it can only validate, manipulate or transform data if you tell it to ie: data resolvers
+
 <br>
 
 ### Is this good or bad?
@@ -20,6 +22,7 @@ applications are using data. This ensures total data integrity within our apps
 and makes tracking bugs much easier.
 
 **This is absolutely a good thing!** 🙂
+
 <br>
 
 ### Be consistent and precise!
@@ -27,6 +30,7 @@ and makes tracking bugs much easier.
 - always use the spread operator when using fragments (separation of concerns)
 - always use inline fragments when a field can be more than one type
 - optional fields should always have a resolver (dummy content may be better for CMS data)
+
 <br>
 
 ### Queries & Mutations
