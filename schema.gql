@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-01-31T12:34:15.417Z ###
+### Type definitions saved at 2021-01-31T13:39:08.482Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -495,7 +495,7 @@ type ContentfulPage implements ContentfulReference & ContentfulEntry & Node @der
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulPageSys
-  contentBlocks: [ContentfulComponentProduct] @link(by: "id", from: "contentBlocks___NODE")
+  contentBlocks: [ContentfulContentBlock] @link(by: "id", from: "contentBlocks___NODE")
 }
 
 type ContentfulHeader implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
@@ -606,6 +606,7 @@ type ContentfulContentBlock implements ContentfulReference & ContentfulEntry & N
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulContentBlockSys
+  page: [ContentfulPage] @link(by: "id", from: "page___NODE")
 }
 
 type ContentfulContentBlockRichText {
@@ -678,49 +679,6 @@ type ContentfulPageSysContentTypeSys {
   id: String
 }
 
-type ContentfulComponentProduct implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
-  contentful_id: String!
-  node_locale: String!
-  purchaseUrl: String!
-  name(showModelCode: Boolean): String!
-  entryTitle: String
-  cardSummaryRichText: ContentfulComponentProductCardSummaryRichText
-  descriptionRichText: ContentfulComponentProductDescriptionRichText
-  price: String
-  code: String
-  image: ContentfulAsset @link(by: "id", from: "image___NODE")
-  page: [ContentfulPage] @link(by: "id", from: "page___NODE")
-  content_block: [ContentfulContentBlock] @link(by: "id", from: "content block___NODE") @proxy(from: "content block___NODE")
-  spaceId: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-  sys: ContentfulComponentProductSys
-}
-
-type ContentfulComponentProductCardSummaryRichText {
-  raw: String
-}
-
-type ContentfulComponentProductDescriptionRichText {
-  raw: String
-}
-
-type ContentfulComponentProductSys @derivedTypes {
-  type: String
-  revision: Int
-  contentType: ContentfulComponentProductSysContentType
-}
-
-type ContentfulComponentProductSysContentType @derivedTypes {
-  sys: ContentfulComponentProductSysContentTypeSys
-}
-
-type ContentfulComponentProductSysContentTypeSys {
-  type: String
-  linkType: String
-  id: String
-}
-
 type ContentfulComponentCard implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
   contentful_id: String!
   node_locale: String!
@@ -749,6 +707,48 @@ type ContentfulComponentCardSysContentType @derivedTypes {
 }
 
 type ContentfulComponentCardSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulComponentProduct implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  purchaseUrl: String!
+  name(showModelCode: Boolean): String!
+  entryTitle: String
+  cardSummaryRichText: ContentfulComponentProductCardSummaryRichText
+  descriptionRichText: ContentfulComponentProductDescriptionRichText
+  price: String
+  code: String
+  image: ContentfulAsset @link(by: "id", from: "image___NODE")
+  content_block: [ContentfulContentBlock] @link(by: "id", from: "content block___NODE") @proxy(from: "content block___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulComponentProductSys
+}
+
+type ContentfulComponentProductCardSummaryRichText {
+  raw: String
+}
+
+type ContentfulComponentProductDescriptionRichText {
+  raw: String
+}
+
+type ContentfulComponentProductSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulComponentProductSysContentType
+}
+
+type ContentfulComponentProductSysContentType @derivedTypes {
+  sys: ContentfulComponentProductSysContentTypeSys
+}
+
+type ContentfulComponentProductSysContentTypeSys {
   type: String
   linkType: String
   id: String

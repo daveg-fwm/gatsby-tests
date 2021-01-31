@@ -28,13 +28,12 @@ and makes tracking bugs much easier.
 ### Be consistent and precise!
 
 - always use the spread operator when using fragments (separation of concerns)
-- always use inline fragments when a field can be more than one type
-- optional **unused** fields should always have a resolver (dummy content may be better for CMS data)
+- always use inline fragments when a field can be more than one type and the type itself is not a fragment
+- **unused** fields should always have a resolver (dummy content may be better for CMS data)
 
 <br>
 
 ### Queries & Mutations
-
 
 CRUD: four basic functions of persistent storage
 - **C**reate
@@ -46,3 +45,26 @@ GraphQL queries are used to `read` data, the `R` in CRUD.<br>
 GraphQL mutations are used to `create` new data, `update` existing data or `delete` data.
 
 Both queries and mutations can have resolvers.
+
+<a href="https://graphql.org/learn/queries/" target="_blank">https://graphql.org/learn/queries/</a>
+
+<br>
+
+### Benefits of resolvers
+
+- all data validation, manipulation or transformation is well organised in a single location
+- keeps the codebase clean and easily maintainable at scale
+- resolvers are JS functions which means you can put anything inside them including API calls
+
+<a href="https://graphql.org/learn/execution/#root-fields-resolvers" target="_blank">https://graphql.org/learn/execution/#root-fields-resolvers</a>
+
+<br>
+
+### Useful Gatsby Docs
+
+- <a href="https://www.gatsbyjs.com/docs/graphql-reference/#query-variables" target="_blank">https://www.gatsbyjs.com/docs/graphql-reference/#query-variables</a>
+- <a href="https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#gatsby-type-builders" target="_blank">https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#gatsby-type-builders</a>
+
+For more advanced resolvers use the `createResolvers` API:
+
+<a href="https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#createresolvers-api" target="_blank">https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#createresolvers-api</a>
