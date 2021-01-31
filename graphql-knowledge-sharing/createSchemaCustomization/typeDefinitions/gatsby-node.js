@@ -17,7 +17,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       updatedAt: Date @dateformat
       sys: ContentfulContentBlockSys
     }
-  `
+  `;
+
   actions.createTypes(typeDefs);
 }
 

@@ -105,15 +105,9 @@ export const ContentBlocksFragment = graphql`
     }
     components {
       type: __typename
-      ... on ContentfulComponentHero {
-        ...ComponentHeroFragment
-      }
-      ... on ContentfulComponentCard {
-        ...ComponentCardFragment
-      }
-      ... on ContentfulComponentProduct {
-        ...ComponentProductFragment
-      }
+      ...ComponentHeroFragment
+      ...ComponentCardFragment
+      ...ComponentProductFragment
     }
     numberOfColumns
   }

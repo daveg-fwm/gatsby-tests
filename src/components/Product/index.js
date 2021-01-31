@@ -17,7 +17,7 @@ const StyledPrice = styled.p`
 `;
 
 const Product = ({ content }) => {
-  const { image, name, descriptionRichText, price, purchaseUrl} = content;
+  const { image, name, descriptionRichText, price, purchaseUrl } = content;
 
   return (
     <StyledProductContainer>
