@@ -68,3 +68,10 @@ Both queries and mutations can have resolvers.
 For more advanced resolvers use the `createResolvers` API:
 
 <a href="https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#createresolvers-api" target="_blank">https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#createresolvers-api</a>
+
+<br>
+
+### Industry-standard platform for GraphQL Client/Server
+
+- <a href="https://www.apollographql.com/" target="_blank">https://www.apollographql.com/</a>
+- <a href="https://www.apollographql.com/docs/" target="_blank">https://www.apollographql.com/docs/</a>
