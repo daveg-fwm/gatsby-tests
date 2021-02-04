@@ -75,3 +75,9 @@ For more advanced resolvers use the `createResolvers` API:
 
 - <a href="https://www.apollographql.com/" target="_blank">https://www.apollographql.com/</a>
 - <a href="https://www.apollographql.com/docs/" target="_blank">https://www.apollographql.com/docs/</a>
+
+<br>
+
+### Recommended course
+
+<a href="https://frontendmasters.com/courses/server-graphql-nodejs/" target="_blank">https://frontendmasters.com/courses/server-graphql-nodejs/</a>
