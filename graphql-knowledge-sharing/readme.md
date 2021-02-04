@@ -63,7 +63,7 @@ Both queries and mutations can have resolvers.
 
 ### Useful Gatsby Docs
 
-- <a href="https://www.gatsbyjs.com/docs/graphql-reference/#query-variables" target="_blank">https://www.gatsbyjs.com/docs/graphql-reference/#query-variables</a>
+- <a href="https://www.gatsbyjs.com/docs/graphql-reference/" target="_blank">https://www.gatsbyjs.com/docs/graphql-reference/</a>
 - <a href="https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#gatsby-type-builders" target="_blank">https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#gatsby-type-builders</a>
 
 For more advanced resolvers use the `createResolvers` API:
