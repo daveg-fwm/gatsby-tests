@@ -25,14 +25,6 @@ and makes tracking bugs much easier.
 
 <br>
 
-### Be consistent and precise!
-
-- always use the spread operator when using fragments (separation of concerns)
-- always use inline fragments when a field can be more than one type and the type itself is not a fragment
-- **unused** fields should always have a resolver (dummy content may be better for CMS data)
-
-<br>
-
 ### Queries & Mutations
 
 CRUD: four basic functions of persistent storage
@@ -49,6 +41,15 @@ Both queries and mutations can have resolvers.
 <a href="https://graphql.org/learn/queries/" target="_blank">https://graphql.org/learn/queries/</a>
 
 <br>
+
+### Be consistent and precise!
+
+- always use the spread operator when using fragments (separation of concerns)
+- always use inline fragments when a field can be more than one type and the type itself is not a fragment
+- **unused** fields should always have a resolver (dummy content may be better for CMS data)
+
+<br>
+
 
 ### Benefits of resolvers
 
