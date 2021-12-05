@@ -7,7 +7,7 @@
   Gatsby Tests
 </h1>
 
-This repo is used to try out various Gatsby plugins and features as well as for strategising Contentful and project structure.
+This repo is used to try out various Gatsby plugins and features.
 
 ### Plugins
 - ["gatsby-source-contentful": "^4.3.0-next.0"](https://github.com/gatsbyjs/gatsby/pull/25249)
